@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ariel Navas — Full Stack Developer & AI Automation</title>
+  <meta name="description" content="Desarrollador Full Stack especializado en automatización con IA, chatbots inteligentes y aplicaciones web modernas para negocios en Panamá y LATAM." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #070b14;
+      --surface: #0d1220;
+      --surface2: #141929;
+      --border: rgba(99,102,241,0.15);
+      --primary: #6366f1;
+      --primary-light: #818cf8;
+      --accent: #06b6d4;
+      --green: #10b981;
+      --text: #f1f5f9;
+      --muted: #94a3b8;
+      --radius: 16px;
+    }
+
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; overflow-x: hidden; }
+
+    /* NAV */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1rem 2rem;
+      background: rgba(7,11,20,0.8);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+    }
+    .logo { font-weight: 800; font-size: 1.2rem; background: linear-gradient(135deg, var(--primary-light), var(--accent)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a { color: var(--muted); text-decoration: none; font-size: 0.9rem; font-weight: 500; transition: color 0.2s; }
+    .nav-links a:hover { color: var(--text); }
+    .nav-cta { background: var(--primary); color: white; padding: 0.5rem 1.2rem; border-radius: 8px; text-decoration: none; font-size: 0.9rem; font-weight: 600; transition: opacity 0.2s; }
+    .nav-cta:hover { opacity: 0.85; }
+
+    /* HERO */
+    .hero {
+      min-height: 100vh; display: flex; align-items: center; justify-content: center;
+      text-align: center; padding: 8rem 2rem 4rem;
+      position: relative; overflow: hidden;
+    }
+    .hero-bg {
+      position: absolute; inset: 0; z-index: 0;
+      background: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(99,102,241,0.18) 0%, transparent 70%),
+                  radial-gradient(ellipse 60% 40% at 80% 80%, rgba(6,182,212,0.1) 0%, transparent 60%);
+    }
+    .grid-overlay {
+      position: absolute; inset: 0; z-index: 0;
+      background-image: linear-gradient(rgba(99,102,241,0.05) 1px, transparent 1px),
+                        linear-gradient(90deg, rgba(99,102,241,0.05) 1px, transparent 1px);
+      background-size: 60px 60px;
+    }
+    .hero-content { position: relative; z-index: 1; max-width: 800px; }
+    .badge {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      background: rgba(99,102,241,0.12); border: 1px solid rgba(99,102,241,0.3);
+      color: var(--primary-light); padding: 0.4rem 1rem; border-radius: 999px;
+      font-size: 0.8rem; font-weight: 600; margin-bottom: 1.5rem;
+      animation: fadeUp 0.6s ease both;
+    }
+    .hero h1 {
+      font-size: clamp(2.5rem, 6vw, 4.5rem); font-weight: 900; line-height: 1.1;
+      margin-bottom: 1.5rem;
+      animation: fadeUp 0.6s 0.1s ease both;
+    }
+    .gradient-text { background: linear-gradient(135deg, var(--primary-light) 0%, var(--accent) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    .hero p { font-size: 1.15rem; color: var(--muted); max-width: 580px; margin: 0 auto 2.5rem; animation: fadeUp 0.6s 0.2s ease both; }
+    .hero-ctas { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; animation: fadeUp 0.6s 0.3s ease both; }
+    .btn-primary { background: linear-gradient(135deg, var(--primary), #4f46e5); color: white; padding: 0.85rem 2rem; border-radius: 10px; text-decoration: none; font-weight: 700; font-size: 1rem; transition: transform 0.2s, box-shadow 0.2s; box-shadow: 0 0 30px rgba(99,102,241,0.3); }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 0 50px rgba(99,102,241,0.5); }
+    .btn-secondary { background: var(--surface2); color: var(--text); padding: 0.85rem 2rem; border-radius: 10px; text-decoration: none; font-weight: 600; font-size: 1rem; border: 1px solid var(--border); transition: border-color 0.2s, transform 0.2s; }
+    .btn-secondary:hover { border-color: var(--primary); transform: translateY(-2px); }
+
+    /* STATS */
+    .stats { display: flex; gap: 3rem; justify-content: center; flex-wrap: wrap; padding: 3rem 2rem; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); background: var(--surface); }
+    .stat { text-align: center; }
+    .stat-num { font-size: 2rem; font-weight: 900; background: linear-gradient(135deg, var(--primary-light), var(--accent)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    .stat-label { font-size: 0.85rem; color: var(--muted); margin-top: 0.25rem; }
+
+    /* SERVICES */
+    section { padding: 6rem 2rem; max-width: 1100px; margin: 0 auto; }
+    .section-label { text-align: center; color: var(--primary-light); font-size: 0.8rem; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 1rem; }
+    .section-title { text-align: center; font-size: clamp(1.8rem, 4vw, 2.8rem); font-weight: 800; margin-bottom: 1rem; }
+    .section-sub { text-align: center; color: var(--muted); font-size: 1rem; max-width: 500px; margin: 0 auto 3rem; }
+
+    .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; }
+    .service-card {
+      background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius);
+      padding: 2rem; transition: border-color 0.3s, transform 0.3s;
+    }
+    .service-card:hover { border-color: var(--primary); transform: translateY(-4px); }
+    .service-icon { font-size: 2rem; margin-bottom: 1rem; }
+    .service-card h3 { font-size: 1.1rem; font-weight: 700; margin-bottom: 0.5rem; }
+    .service-card p { color: var(--muted); font-size: 0.9rem; }
+    .service-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 1rem; }
+    .tag { background: rgba(99,102,241,0.1); border: 1px solid rgba(99,102,241,0.2); color: var(--primary-light); font-size: 0.7rem; font-weight: 600; padding: 0.2rem 0.6rem; border-radius: 6px; }
+
+    /* PROJECTS */
+    .projects-section { background: var(--surface); padding: 6rem 2rem; }
+    .projects-inner { max-width: 1100px; margin: 0 auto; }
+    .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1.5rem; margin-top: 3rem; }
+    .project-card {
+      background: var(--bg); border: 1px solid var(--border); border-radius: var(--radius);
+      overflow: hidden; transition: border-color 0.3s, transform 0.3s;
+    }
+    .project-card:hover { border-color: var(--primary); transform: translateY(-4px); }
+    .project-header { padding: 1.5rem 1.5rem 0; }
+    .project-emoji { font-size: 2.5rem; margin-bottom: 0.75rem; }
+    .project-card h3 { font-size: 1.1rem; font-weight: 700; margin-bottom: 0.5rem; }
+    .project-card p { color: var(--muted); font-size: 0.85rem; }
+    .project-footer { display: flex; align-items: center; justify-content: space-between; padding: 1rem 1.5rem; border-top: 1px solid var(--border); margin-top: 1.2rem; }
+    .project-link { color: var(--primary-light); text-decoration: none; font-size: 0.8rem; font-weight: 600; }
+    .project-link:hover { text-decoration: underline; }
+    .status-badge { font-size: 0.7rem; font-weight: 700; padding: 0.25rem 0.6rem; border-radius: 6px; }
+    .status-live { background: rgba(16,185,129,0.15); color: var(--green); border: 1px solid rgba(16,185,129,0.3); }
+    .status-wip { background: rgba(245,158,11,0.15); color: #f59e0b; border: 1px solid rgba(245,158,11,0.3); }
+
+    /* STACK */
+    .stack-grid { display: flex; flex-wrap: wrap; gap: 1rem; justify-content: center; margin-top: 2.5rem; }
+    .stack-item { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 0.75rem 1.25rem; font-size: 0.85rem; font-weight: 600; color: var(--muted); transition: border-color 0.2s, color 0.2s; }
+    .stack-item:hover { border-color: var(--primary); color: var(--text); }
+
+    /* CTA FINAL */
+    .cta-section { text-align: center; padding: 6rem 2rem; }
+    .cta-card { background: linear-gradient(135deg, rgba(99,102,241,0.1), rgba(6,182,212,0.08)); border: 1px solid rgba(99,102,241,0.25); border-radius: 24px; padding: 4rem 2rem; max-width: 650px; margin: 0 auto; }
+    .cta-card h2 { font-size: 2rem; font-weight: 800; margin-bottom: 1rem; }
+    .cta-card p { color: var(--muted); margin-bottom: 2rem; }
+
+    /* FOOTER */
+    footer { border-top: 1px solid var(--border); padding: 2rem; text-align: center; color: var(--muted); font-size: 0.85rem; }
+    footer a { color: var(--primary-light); text-decoration: none; }
+
+    /* ANIMATIONS */
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+
+    @media (max-width: 640px) {
+      .nav-links { display: none; }
+      nav { padding: 1rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <span class="logo">Ariel Navas</span>
+    <ul class="nav-links">
+      <li><a href="#servicios">Servicios</a></li>
+      <li><a href="#proyectos">Proyectos</a></li>
+      <li><a href="#stack">Stack</a></li>
+    </ul>
+    <a href="mailto:arielnavas.dev@gmail.com" class="nav-cta">Contactar</a>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-bg"></div>
+    <div class="grid-overlay"></div>
+    <div class="hero-content">
+      <div class="badge">🇵🇦 Desarrollador Full Stack · Panamá &amp; LATAM</div>
+      <h1>
+        Construyo soluciones web<br />
+        impulsadas por <span class="gradient-text">Inteligencia Artificial</span>
+      </h1>
+      <p>Especializado en automatización, chatbots inteligentes y aplicaciones web modernas que generan resultados reales para negocios.</p>
+      <div class="hero-ctas">
+        <a href="#proyectos" class="btn-primary">Ver proyectos →</a>
+        <a href="https://github.com/Atna2007" class="btn-secondary" target="_blank">GitHub Profile</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- STATS -->
+  <div class="stats">
+    <div class="stat"><div class="stat-num">8+</div><div class="stat-label">Proyectos en GitHub</div></div>
+    <div class="stat"><div class="stat-num">3+</div><div class="stat-label">Años de experiencia</div></div>
+    <div class="stat"><div class="stat-num">100%</div><div class="stat-label">Proyectos entregados</div></div>
+    <div class="stat"><div class="stat-num">IA</div><div class="stat-label">Enfocado en automatización</div></div>
+  </div>
+
+  <!-- SERVICES -->
+  <section id="servicios">
+    <p class="section-label">Lo que hago</p>
+    <h2 class="section-title">Servicios</h2>
+    <p class="section-sub">Soluciones completas desde el diseño hasta el despliegue en producción.</p>
+    <div class="services-grid">
+      <div class="service-card">
+        <div class="service-icon">🤖</div>
+        <h3>Chatbots & Automatización IA</h3>
+        <p>Chatbots inteligentes con OpenAI integrados en WhatsApp, web y más. Automatización de procesos con Make.com y Zapier.</p>
+        <div class="service-tags"><span class="tag">OpenAI</span><span class="tag">Make.com</span><span class="tag">Node.js</span></div>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">🌐</div>
+        <h3>Aplicaciones Web Full Stack</h3>
+        <p>Apps modernas con Next.js, React y TypeScript. Desde landing pages hasta dashboards complejos con autenticación y base de datos.</p>
+        <div class="service-tags"><span class="tag">Next.js</span><span class="tag">TypeScript</span><span class="tag">PostgreSQL</span></div>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">🛡️</div>
+        <h3>Seguridad Web</h3>
+        <p>Auditorías de vulnerabilidades, detección de XSS, CORS inseguros, headers y CSRF. Scanner modular en Node.js.</p>
+        <div class="service-tags"><span class="tag">Security</span><span class="tag">TypeScript</span><span class="tag">OWASP</span></div>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">📊</div>
+        <h3>Scraping & Leads B2B</h3>
+        <p>Extracción automatizada de datos empresariales con validación de emails. Pipelines de datos para campañas de outreach.</p>
+        <div class="service-tags"><span class="tag">Python</span><span class="tag">Puppeteer</span><span class="tag">APIs</span></div>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">⚡</div>
+        <h3>APIs REST &amp; Backends</h3>
+        <p>APIs documentadas con Swagger, autenticación JWT, bases de datos relacionales y despliegue en la nube.</p>
+        <div class="service-tags"><span class="tag">Express</span><span class="tag">JWT</span><span class="tag">Swagger</span></div>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">🚀</div>
+        <h3>Deploy &amp; DevOps</h3>
+        <p>Despliegue en Vercel, Railway, Render y GitHub Pages. CI/CD básico con GitHub Actions.</p>
+        <div class="service-tags"><span class="tag">Vercel</span><span class="tag">Railway</span><span class="tag">GitHub Actions</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <div class="projects-section" id="proyectos">
+    <div class="projects-inner">
+      <p class="section-label">Portafolio</p>
+      <h2 class="section-title">Proyectos destacados</h2>
+      <p class="section-sub">Proyectos reales con código abierto en GitHub.</p>
+      <div class="projects-grid">
+        <div class="project-card">
+          <div class="project-header">
+            <div class="project-emoji">🔐</div>
+            <h3>Ariel Security Scanner</h3>
+            <p>Scanner modular de vulnerabilidades web. Detecta XSS, CORS inseguros, headers y CSRF en sitios web.</p>
+            <div class="service-tags" style="margin-top:0.75rem"><span class="tag">Node.js</span><span class="tag">TypeScript</span><span class="tag">Security</span></div>
+          </div>
+          <div class="project-footer">
+            <a href="https://github.com/Atna2007/ariel-security-scanner" class="project-link" target="_blank">Ver repositorio →</a>
+            <span class="status-badge status-live">✓ Activo</span>
+          </div>
+        </div>
+        <div class="project-card">
+          <div class="project-header">
+            <div class="project-emoji">🤖</div>
+            <h3>Nor.AI — Chatbot Inteligente</h3>
+            <p>Chatbot con Make.com + OpenAI integrado en web. Respuestas naturales, automatización de cotizaciones y soporte 24/7.</p>
+            <div class="service-tags" style="margin-top:0.75rem"><span class="tag">OpenAI</span><span class="tag">Make.com</span><span class="tag">HTML/JS</span></div>
+          </div>
+          <div class="project-footer">
+            <a href="https://github.com/Atna2007/Nor.AI" class="project-link" target="_blank">Ver repositorio →</a>
+            <span class="status-badge status-live">✓ Activo</span>
+          </div>
+        </div>
+        <div class="project-card">
+          <div class="project-header">
+            <div class="project-emoji">💬</div>
+            <h3>AutoCool — Colección de Chatbots</h3>
+            <p>Chatbots con reconocimiento de voz, glassmorphism UI, animaciones fluidas y persistencia en localStorage.</p>
+            <div class="service-tags" style="margin-top:0.75rem"><span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">Web Speech API</span></div>
+          </div>
+          <div class="project-footer">
+            <a href="https://github.com/Atna2007/autoCool" class="project-link" target="_blank">Ver repositorio →</a>
+            <span class="status-badge status-live">✓ Live Demo</span>
+          </div>
+        </div>
+        <div class="project-card">
+          <div class="project-header">
+            <div class="project-emoji">📋</div>
+            <h3>Chatbot Legal IA</h3>
+            <p>Asistente IA especializado para el sector legal. Responde consultas jurídicas frecuentes de forma automatizada.</p>
+            <div class="service-tags" style="margin-top:0.75rem"><span class="tag">IA</span><span class="tag">Legal Tech</span></div>
+          </div>
+          <div class="project-footer">
+            <a href="https://github.com/Atna2007/chatbot-legal-ia" class="project-link" target="_blank">Ver repositorio →</a>
+            <span class="status-badge status-wip">En progreso</span>
+          </div>
+        </div>
+        <div class="project-card">
+          <div class="project-header">
+            <div class="project-emoji">🎯</div>
+            <h3>Lead Automation</h3>
+            <p>Automatización de captura y gestión de leads desde Facebook Ads. Pipeline completo de datos hacia CRM.</p>
+            <div class="service-tags" style="margin-top:0.75rem"><span class="tag">Automation</span><span class="tag">Facebook</span><span class="tag">CRM</span></div>
+          </div>
+          <div class="project-footer">
+            <a href="https://github.com/Atna2007/lead-automation" class="project-link" target="_blank">Ver repositorio →</a>
+            <span class="status-badge status-wip">En progreso</span>
+          </div>
+        </div>
+        <div class="project-card">
+          <div class="project-header">
+            <div class="project-emoji">🔍</div>
+            <h3>B2B Scraper</h3>
+            <p>Scraper para prospección B2B con validación de emails en tiempo real. Exporta a CSV/Google Sheets.</p>
+            <div class="service-tags" style="margin-top:0.75rem"><span class="tag">Node.js</span><span class="tag">Scraping</span><span class="tag">B2B</span></div>
+          </div>
+          <div class="project-footer">
+            <a href="https://github.com/Atna2007/b2b-scraper" class="project-link" target="_blank">Ver repositorio →</a>
+            <span class="status-badge status-wip">En progreso</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- STACK -->
+  <section id="stack">
+    <p class="section-label">Tecnologías</p>
+    <h2 class="section-title">Mi Stack</h2>
+    <p class="section-sub">Herramientas con las que trabajo día a día.</p>
+    <div class="stack-grid">
+      <span class="stack-item">⚛️ React</span>
+      <span class="stack-item">▲ Next.js</span>
+      <span class="stack-item">🔷 TypeScript</span>
+      <span class="stack-item">🟢 Node.js</span>
+      <span class="stack-item">🐍 Python</span>
+      <span class="stack-item">🐘 PostgreSQL</span>
+      <span class="stack-item">🍃 MongoDB</span>
+      <span class="stack-item">🤖 OpenAI API</span>
+      <span class="stack-item">⚙️ Make.com</span>
+      <span class="stack-item">▲ Vercel</span>
+      <span class="stack-item">🚂 Railway</span>
+      <span class="stack-item">🐙 GitHub</span>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <div class="cta-section">
+    <div class="cta-card">
+      <h2>¿Listo para trabajar juntos?</h2>
+      <p>Cuéntame tu proyecto. Respondo en menos de 24 horas.</p>
+      <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap">
+        <a href="mailto:arielnavas.dev@gmail.com" class="btn-primary">Enviar email →</a>
+        <a href="https://github.com/Atna2007" class="btn-secondary" target="_blank">Ver GitHub</a>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <p>Construido con ❤️ por <a href="https://github.com/Atna2007">Ariel Navas</a> · Panamá 🇵🇦</p>
+  </footer>
+
+</body>
+</html>
